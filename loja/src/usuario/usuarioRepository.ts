@@ -13,4 +13,9 @@ export class UsuarioRepository {
     async listar() {
         return this.usuarios
     }
+
+    async encontraPeloEmail(email: string) {
+        const possivelUsuario = this.usuarios.find(_ =>_.email === email )
+        return possivelUsuario   
+    }
 }
