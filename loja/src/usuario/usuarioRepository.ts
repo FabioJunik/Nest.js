@@ -6,7 +6,7 @@ import { UsuarioEntity } from "./usuario.entity"
 export class UsuarioRepository {
     private usuarios:UsuarioEntity[] = []
 
-    async salvar(dadosUsuaio: CriaUsuarioDTO) {
+    async salvar(dadosUsuaio: UsuarioEntity) {
         this.usuarios.push(dadosUsuaio)
     }
 
@@ -17,5 +17,28 @@ export class UsuarioRepository {
     async encontraPeloEmail(email: string) {
         const possivelUsuario = this.usuarios.find(_ =>_.email === email )
         return possivelUsuario   
+    }
+
+    private buscaPorId(id: string) {
+        const possivelUsuario = this.usuarios.find(
+          (usuarioSalvo) => usuarioSalvo.id === id,
+        );
+    
+        if (!possivelUsuario) {
+          throw new Error('Usuário não existe');
+        }
+    
+        return possivelUsuario;
+      }
+
+    async atualizar(id: string, dadosUsuaio: Partial<UsuarioEntity>) {
+        const usuario = this.buscaPorId(id);
+        
+        Object.entries(dadosUsuaio).forEach(([chave, valor]) => {
+            if(chave === 'id') return
+            usuario[chave] = valor
+        })
+
+        return usuario
     }
 }
