@@ -41,4 +41,10 @@ export class UsuarioRepository {
 
         return usuario
     }
+
+    async remove(id: string) {
+        const usuario = this.buscaPorId(id);
+        this.usuarios = this.usuarios.filter((_) => _.id !== id);
+        return usuario;
+    }
 }
