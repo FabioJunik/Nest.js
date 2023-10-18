@@ -5,6 +5,7 @@ import { QuizPrismaRepository } from './repositories/implementations/quiz-prisma
 import { Quiz } from './entities/quiz.entity';
 import { FindAllQuizUseCase } from './use-cases/find-all-quiz.usecase';
 import { FindOneQuizUseCase } from './use-cases/find-one-quiz.usecase';
+import { UpdateQuizUseCase } from './use-cases/update-quiz.usecase';
 
 @Module({
   imports: [Quiz],
@@ -14,6 +15,7 @@ import { FindOneQuizUseCase } from './use-cases/find-one-quiz.usecase';
     CreateQuizUseCase,
     FindAllQuizUseCase,
     FindOneQuizUseCase,
+    UpdateQuizUseCase,
     {
       provide: 'IQuizRepository',
       useExisting: QuizPrismaRepository,
