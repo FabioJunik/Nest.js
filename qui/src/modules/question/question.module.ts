@@ -5,6 +5,7 @@ import { CreateQuestionUseCase } from './use-cases/create-question.usecase';
 import { QuestionPrismaRepository } from './repositories/implementations/question-prisma.repository';
 import { FindAllQuestionUseCase } from './use-cases/find-all-questions.usecase';
 import { FindOneQuestionUseCase } from './use-cases/find-one-questions.usecase';
+import { UpdateQuestionUseCase } from './use-cases/update-question.usecase';
 
 @Module({
   imports: [Question],
@@ -14,6 +15,7 @@ import { FindOneQuestionUseCase } from './use-cases/find-one-questions.usecase';
     CreateQuestionUseCase,
     FindAllQuestionUseCase,
     FindOneQuestionUseCase,
+    UpdateQuestionUseCase,
     {
       provide: 'IQuestionRepository',
       useExisting: QuestionPrismaRepository,
