@@ -6,6 +6,7 @@ import { QuestionPrismaRepository } from './repositories/implementations/questio
 import { FindAllQuestionUseCase } from './use-cases/find-all-questions.usecase';
 import { FindOneQuestionUseCase } from './use-cases/find-one-questions.usecase';
 import { UpdateQuestionUseCase } from './use-cases/update-question.usecase';
+import { DeleteQuestionUseCase } from './use-cases/delete-question.usecase';
 
 @Module({
   imports: [Question],
@@ -16,6 +17,7 @@ import { UpdateQuestionUseCase } from './use-cases/update-question.usecase';
     FindAllQuestionUseCase,
     FindOneQuestionUseCase,
     UpdateQuestionUseCase,
+    DeleteQuestionUseCase,
     {
       provide: 'IQuestionRepository',
       useExisting: QuestionPrismaRepository,
