@@ -24,8 +24,13 @@ export class QuizController {
   ) {}
 
   @Post()
-  create(@Body() createQuizDto: CreateQuizDto) {
-    return this.createQuizUseCase.execute(createQuizDto);
+  async create(@Body() createQuizDto: CreateQuizDto) {
+    await this.createQuizUseCase.execute(createQuizDto);
+
+    return {
+      status: 200,
+      message: 'Quiz criado com sucesso !',
+    };
   }
 
   @Get()

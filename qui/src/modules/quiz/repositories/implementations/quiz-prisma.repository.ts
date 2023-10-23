@@ -3,11 +3,14 @@ import { CreateQuizDto } from '../../dto/create-quiz.dto';
 import { UpdateQuizDto } from '../../dto/update-quiz.dto';
 import { Quiz } from '../../entities/quiz.entity';
 import { IQuizRepository } from '../IQuiz-repository';
+import { prisma } from 'src/prisma.service';
 
 @Injectable()
 export class QuizPrismaRepository implements IQuizRepository {
   async create(createQuizDto: CreateQuizDto): Promise<void> {
-    console.log('Quiz created');
+    await prisma.quiz.create({
+      data: createQuizDto,
+    });
   }
 
   async findAll(): Promise<Quiz[]> {

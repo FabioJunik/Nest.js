@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, BadRequestException } from '@nestjs/common';
 import { CreateQuizDto } from '../dto/create-quiz.dto';
 import { IQuizRepository } from '../repositories/IQuiz-repository';
 
@@ -10,6 +10,8 @@ export class CreateQuizUseCase {
   ) {}
 
   async execute({ name }: CreateQuizDto) {
+    if (!name) throw new BadRequestException('O nome é obrigatorio !');
+
     await this.quizRepository.create({ name });
   }
 }
