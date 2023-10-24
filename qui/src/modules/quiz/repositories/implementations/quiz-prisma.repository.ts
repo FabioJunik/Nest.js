@@ -14,8 +14,8 @@ export class QuizPrismaRepository implements IQuizRepository {
   }
 
   async findAll(): Promise<Quiz[]> {
-    console.log('All Quiz found');
-    return [];
+    const quizs = await prisma.quiz.findMany();
+    return quizs;
   }
 
   async findOne(id: string): Promise<Quiz | null> {
