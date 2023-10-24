@@ -8,4 +8,5 @@ export interface IQuizRepository {
   findAll(): Promise<Quiz[]>;
   findOne(id: string): Promise<Quiz | null>;
   delete(id: string): Promise<void>;
+  findByName(name: string): Promise<Quiz | null>;
 }

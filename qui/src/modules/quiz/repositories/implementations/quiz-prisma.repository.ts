@@ -30,4 +30,17 @@ export class QuizPrismaRepository implements IQuizRepository {
   async delete(id: string): Promise<void> {
     console.log(`This action removes a #${id} quiz`);
   }
+
+  async findByName(name: string): Promise<Quiz | null> {
+    const quiz = await prisma.quiz.findFirst({
+      where: {
+        name: {
+          mode: 'insensitive',
+          equals: name,
+        },
+      },
+    });
+
+    return quiz;
+  }
 }
