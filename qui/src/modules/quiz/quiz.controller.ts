@@ -13,6 +13,7 @@ import { FindAllQuizUseCase } from './use-cases/find-all-quiz.usecase';
 import { FindOneQuizUseCase } from './use-cases/find-one-quiz.usecase';
 import { UpdateQuizDto } from './dto/update-quiz.dto';
 import { UpdateQuizUseCase } from './use-cases/update-quiz.usecase';
+import { DeleteQuizUseCase } from './use-cases/delete-quiz.usecase';
 
 @Controller('quiz')
 export class QuizController {
@@ -21,6 +22,7 @@ export class QuizController {
     private readonly findAllQuizUseCase: FindAllQuizUseCase,
     private readonly findOneQuizUseCase: FindOneQuizUseCase,
     private readonly updateQuizUseCase: UpdateQuizUseCase,
+    private readonly deleteQuizUseCase: DeleteQuizUseCase,
   ) {}
 
   @Post()
@@ -50,6 +52,11 @@ export class QuizController {
 
   @Delete(':id')
   delete(@Param('id') id: string) {
-    return this.findOneQuizUseCase.execute(id);
+    this.deleteQuizUseCase.execute(id);
+
+    return {
+      status: 200,
+      message: 'Quiz eliminado com sucesso !',
+    };
   }
 }

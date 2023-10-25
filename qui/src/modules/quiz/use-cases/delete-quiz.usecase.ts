@@ -11,7 +11,7 @@ export class DeleteQuizUseCase {
   async execute(id: string) {
     const quizOrNull = await this.quizRepository.findOne(id);
 
-    if (quizOrNull) throw new NotFoundException('Quiz não encontrado !');
+    if (!quizOrNull) throw new NotFoundException('Quiz não encontrado !');
 
     await this.quizRepository.delete(id);
   }

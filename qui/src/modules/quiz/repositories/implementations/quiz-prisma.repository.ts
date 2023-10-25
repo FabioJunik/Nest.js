@@ -19,8 +19,13 @@ export class QuizPrismaRepository implements IQuizRepository {
   }
 
   async findOne(id: string): Promise<Quiz | null> {
-    console.log(`This action returns a #${id} quiz`);
-    return null;
+    const quiz = await prisma.quiz.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    return quiz;
   }
 
   async update(id: string, updateQuizDto: UpdateQuizDto): Promise<void> {
@@ -28,7 +33,11 @@ export class QuizPrismaRepository implements IQuizRepository {
   }
 
   async delete(id: string): Promise<void> {
-    console.log(`This action removes a #${id} quiz`);
+    await prisma.quiz.delete({
+      where: {
+        id,
+      },
+    });
   }
 
   async findByName(name: string): Promise<Quiz | null> {
